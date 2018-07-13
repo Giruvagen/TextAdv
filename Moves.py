@@ -1,12 +1,15 @@
 #defines movement
 import random
 from content import mapdesc
+from content import monsters
 class motion(object):
 
     def __init__(self, char):
       self.char = char
     def battle(self):
-        print("You can't fight yet!")
+        print("A monster appears!")
+        self.monster = random.choice(list(monsters.items()))
+        print("It's a wild {:s}!".format(self.monster))
         self.move(self.direction)
     def move(self, direction):
         if self.direction == "north":
@@ -49,6 +52,8 @@ class motion(object):
               self.battlechance = random.randint(0,8)
               if self.battlechance == 1:
                 self.battle()
+        else:
+            print("Please choose a valid direction: north, south, east or west!")
         self.direction = input("Choose your direction of travel: ")
         self.move(self.direction)
     def startmove(self):

@@ -9,3 +9,7 @@ mapdesc = { (0,0) : "You stand amongst tall green grass",
             (2,1) : "You are surrounded by forest.",
             (2,2) : "You are surrounded by forest.",
 }
+monsters = { "Imp" : 3,
+             "Goblin" : 2,
+             "Wobuffet" : 4,
+}
