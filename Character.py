@@ -1,7 +1,7 @@
 #Init character with initial values
 import random
 import time
-class Character:
+class Character(object):
     def __init__(self,name,st,defe,spd):
       self.name = name
       self.st = st
