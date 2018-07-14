@@ -1,12 +1,7 @@
 #Init character with initial values
 import random
 import time
-class Character(object):
-    def __init__(self,name,st,defe,spd):
-      self.name = name
-      self.st = st
-      self.defe = defe
-      self.spd = spd
+class Character:
     def startGame(self):
         print("Let the games begin!")
         self.startmove(self.name)

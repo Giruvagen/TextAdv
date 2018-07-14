@@ -2,9 +2,7 @@
 import random
 from content import mapdesc
 from content import monsters
-class motion(object):
-    def __init__(self, char):
-      self.char = char
+class motion:
     def gameOver(self):
         print("You died! Game over man!")
         self.startGame()
