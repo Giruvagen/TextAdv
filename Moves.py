@@ -6,10 +6,27 @@ class motion(object):
 
     def __init__(self, char):
       self.char = char
-    def battle(self):
+    def gameOver(self):
+        print("You died! Game over man!")
+        self.startGame()
+    def battle(self, player):
         print("A monster appears!")
         self.monster = random.choice(list(monsters.items()))
-        print("It's a wild {:s}!".format(self.monster))
+        print("It's a wild {}!".format(self.monster[0]))
+        fightChoice = input("What will you do, run or fight? ")
+        if fightChoice == "fight":
+            yourAttack = player.st + random.randint(1,4)
+            monsterAttack = self.monster[1] + random.randint(1,4)
+            if yourAttack > monsterAttack:
+                print("You won! The monster is vanquished!")
+            elif monsterAttack > yourAttack:
+                print("You lost!")
+                self.gameOver()
+        elif fightChoice == "run":
+            print("You ran away, such cowardice!")
+        else:
+            print("You have to fight or run!")
+            self.battle(player)
         self.move(self.direction)
     def move(self, direction):
         if self.direction == "north":
@@ -21,7 +38,7 @@ class motion(object):
               print(mapdesc[(self.startx,self.starty)])
               self.battlechance = random.randint(0,8)
               if self.battlechance == 1:
-                self.battle()
+                self.battle(player)
         elif self.direction == "south":
             self.starty -= 1
             if self.starty < 0:
@@ -31,7 +48,7 @@ class motion(object):
               print(mapdesc[(self.startx,self.starty)])
               self.battlechance = random.randint(0,8)
               if self.battlechance == 1:
-                self.battle()
+                self.battle(player)
         elif self.direction ==  "east":
             self.startx += 1
             if self.startx > 2:
@@ -41,7 +58,7 @@ class motion(object):
               print(mapdesc[(self.startx,self.starty)])
               self.battlechance = random.randint(0,8)
               if self.battlechance == 1:
-                self.battle()
+                self.battle(player)
         elif self.direction == "west":
             self.startx -= 1
             if self.startx < 0:
@@ -51,7 +68,7 @@ class motion(object):
               print(mapdesc[(self.startx,self.starty)])
               self.battlechance = random.randint(0,8)
               if self.battlechance == 1:
-                self.battle()
+                self.battle(player)
         else:
             print("Please choose a valid direction: north, south, east or west!")
         self.direction = input("Choose your direction of travel: ")

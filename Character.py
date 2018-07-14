@@ -1,14 +1,17 @@
 #Init character with initial values
 import random
 import time
-import Moves
+from Moves import *
 class Character(object):
-    def __init__(self,name):
+    def __init__(self,name,st,defe,spd):
       self.name = name
+      self.st = st
+      self.defe = defe
+      self.spd = spd
     def startGame(self):
         print("Let the games begin!")
-        exec(self.name + ' = Moves.motion(self.name)')
-
+        startPlayer = motion(self.name)
+        startPlayer.startmove()
     def startRoll(self):
         print("Please select your intial statistics. Please note you may not set a single item to higher than 4 and the total of all 3 must be less than 10")
         atts = []
@@ -47,3 +50,4 @@ class Character(object):
           print("Your speed is {:d}".format(self.spd))
           time.sleep(1)
           self.startGame()
+
