@@ -21,3 +21,17 @@ monsters = { "Imp" : 3,
              "Wobuffet" : 4,
              "Krampus" : 7,
 }
+
+maptypelist = ['hills','grass','meadow','plain','trail','river','stream','lake','tophill','cave','boulder']
+maptypedesc = {'hills' : "You stand upon a hill.",
+               'grass' : "You stand amongst tall green grass",
+               'meadow': "You are in a meadow surrounded by wild flowers" ,
+               'plain' : "You stand upon a wide open plain",
+               'trail' : "You are walking along a dusty trail.",
+               'river' : "You are walking alongside a wide river",
+               'stream': "You are sat beside a tranquil lazy stream",
+               'lake' : "You are beside a wide open lake.",
+               'tophill' : "You are atop the highest hill and can see for miles.",
+               'cave' : "You are at the collapsed entrace to a mine.",
+               'boulder' : "You in front of a huge boulder.",
+               'bog' : "You are stood in a wet bog"}

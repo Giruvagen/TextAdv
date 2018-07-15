@@ -1,0 +1,2 @@
+#class for generating a random map
+class randMap(object)
