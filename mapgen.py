@@ -15,6 +15,7 @@ class randMap(object):
         self.mapxrange = list(range(self.mapx))
         self.mapyrange = list(range(self.mapy))
         self.maptup = []
+        self.mapkeytotal = self.mapxrange * self.mapyrange
         for x in self.mapxrange:
             for y in self.mapyrange:
                 self.maptup.append([x,y,""])
@@ -27,6 +28,3 @@ class randMap(object):
         for i in self.maptup:
             self.mapdict[count] = i
             count += 1
-        
-        
-            
