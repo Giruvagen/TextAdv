@@ -3,6 +3,9 @@ import random
 import time
 from content import mapdesc
 from content import monsters
+from playsound import playsound
+import sys
+from termcolor import colored, cprint
 class starter(object):
         def __init__(self, name):
           self.name = name
@@ -10,6 +13,8 @@ class starter(object):
           self.defe = 0
           self.spd = 0
           self.char = ""
+          self.exp = 1
+          self.level = 1
         def startGame(self):
           print("Let the games begin!")
           self.startmove()
@@ -67,6 +72,16 @@ class starter(object):
             print("The monster strikes for {} damage!".format(monsterAttack))
             if yourAttack > monsterAttack:
                 print("You won! The monster is vanquished!")
+                self.wonexp = random.randint(1,3)
+                self.exp = self.exp + self.wonexp
+                print("You earned {} experience!".format(self.wonexp))
+                print("You have {} experience earned!".format(self.exp))
+                if self.exp > self.level * 5:
+                        self.level += 1
+                        print("You gained a level, you are now level {}!".format(self.level))
+                        self.st +=1
+                        self.defe += 1
+                        self.spd += 1
             elif monsterAttack > yourAttack:
                 print("You lost!")
                 self.gameOver()
@@ -79,42 +94,51 @@ class starter(object):
         def move(self, direction):
           if self.direction == "north":
             self.starty += 1
-            if self.starty > 2:
+            if self.starty > 3:
                 self.starty = 0
                 print(mapdesc[(self.startx,self.starty)])
             else:
               print(mapdesc[(self.startx,self.starty)])
-              self.battlechance = random.randint(0,8)
+              self.battlechance = random.randint(0,4)
               if self.battlechance == 1:
                 self.battle()
           elif self.direction == "south":
             self.starty -= 1
             if self.starty < 0:
-                self.starty = 2
+                self.starty = 3
                 print(mapdesc[(self.startx,self.starty)])
+                self.battlechance = random.randint(0,4)
+                if self.battlechance == 1:
+                  self.battle()
             else:
               print(mapdesc[(self.startx,self.starty)])
-              self.battlechance = random.randint(0,8)
+              self.battlechance = random.randint(0,4)
               if self.battlechance == 1:
                 self.battle()
           elif self.direction ==  "east":
             self.startx += 1
-            if self.startx > 2:
+            if self.startx > 3:
                 self.startx = 0
                 print(mapdesc[(self.startx,self.starty)])
+                self.battlechance = random.randint(0,4)
+                if self.battlechance == 1:
+                  self.battle()
             else:
               print(mapdesc[(self.startx,self.starty)])
-              self.battlechance = random.randint(0,8)
+              self.battlechance = random.randint(0,4)
               if self.battlechance == 1:
                 self.battle()
           elif self.direction == "west":
             self.startx -= 1
             if self.startx < 0:
-                self.startx = 2
+                self.startx = 3
                 print(mapdesc[(self.startx,self.starty)])
+                self.battlechance = random.randint(0,4)
+                if self.battlechance == 1:
+                  self.battle()
             else:
               print(mapdesc[(self.startx,self.starty)])
-              self.battlechance = random.randint(0,8)
+              self.battlechance = random.randint(0,4)
               if self.battlechance == 1:
                 self.battle()
           else:
@@ -122,10 +146,11 @@ class starter(object):
           self.direction = input("Choose your direction of travel: ")
           self.move(self.direction)
         def startmove(self):
-          self.startx = random.randint(0,2)
-          self.starty = random.randint(0,2)
-          print("Here begins your adventure, {:s}, at spot {:d},{:d}".format(self.char,self.startx,self.starty))
+          self.startx = random.randint(0,3)
+          self.starty = random.randint(0,3)
+          print("Here begins your adventure, {:s}, at spot {:d},{:d}".format(self.name,self.startx,self.starty))
           print(mapdesc[(self.startx,self.starty)])
+          playsound('below.mp3', block=False)
           self.direction = input("Choose your direction of travel: ")
           self.move(self.direction)
 char = input("What is your name? ")
